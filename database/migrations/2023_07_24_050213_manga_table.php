@@ -15,11 +15,12 @@ class MangaTable extends Migration
     {
         Schema::create('comic', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('slug');
             $table->string('genre');
+            $table->string('type');
             $table->string('description');
-            $table->dateTime('date_created');
+            $table->string('cover');
             $table->timestamps();
         });
     }
