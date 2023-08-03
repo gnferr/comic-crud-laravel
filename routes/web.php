@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\admin\ComicController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\UserAccount;
+use App\Http\Controllers\auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,16 +18,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'admin/dashboard');
-Route::prefix('admin')->group(function () {
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::get('testing', [UserAccount::class, 'testing'])->name('testing');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::redirect('/', 'admin/dashboard');
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Comic 
+    Route::controller(ComicController::class)->group(function () {
+        Route::get('comic', 'index')->name('comic');
+        Route::get('comic-list', 'get')->name('comic-list');
+        Route::post('comic-edit', 'edit')->name('comic-edit');
+        Route::post('comic-create', 'create')->name('comic-create');
+        Route::post('comic-delete', 'delete')->name('comic-delete');
+    });
 
-    Route::get('comic', [ComicController::class, 'index'])->name('admin.comic');
-    Route::get('comic-list', [ComicController::class, 'get'])->name('admin.comic-list');
-    Route::post('comic-edit', [ComicController::class, 'edit'])->name('admin.comic-edit');
-    Route::post('comic-create', [ComicController::class, 'create'])->name('admin.comic-create');
-    Route::post('comic-update', [ComicController::class, 'update'])->name('admin.comic-update');
-    Route::post('comic-delete', [ComicController::class, 'delete'])->name('admin.comic-delete');
+    // Users
+    Route::controller(UserAccount::class)->group(function () {
+        Route::get('users', 'index')->name('users');
+        Route::get('users-list', 'get')->name('user-list');
+        Route::post('users-create', 'create')->name('user-create');
+        Route::post('users-update', 'update')->name('user-update');
+        Route::get('users/account-setting/{id}', 'account')->name('user-setting');
+    });
 });
+
+// Route::prefix('admin')->group(function () {
+// });

@@ -69,7 +69,7 @@
                 <div id="flip-card">
                     <div class="flip-card-front">
                         <div class="card-flip-back">
-                        <div class="card">
+                            <div class="card">
                             <div class="card-header">
                                 <h4>Insert Data</h4>
                             </div>
@@ -121,8 +121,10 @@
                                   {{-- </form> --}}
                             </div>
                         </div>
-                    </div></div>
-                    <div class="flip-card-back"><div class="col-md-6 col-xl card-flip-back">
+                    </div>
+                </div>
+                    <div class="flip-card-back">
+                        <div class="card-flip-back">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Update Data</h4>
@@ -326,7 +328,6 @@
     }
 </style>
 <script>
-
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -370,7 +371,7 @@
             ],
         })
     })
-
+    
     // Insert Function
     $('#btn-submit').click(function(){
         var id = $('#id').val()

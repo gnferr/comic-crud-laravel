@@ -4343,6 +4343,28 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 
 
+/* Custom Scrollball */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #bcbcbc;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #979797;
+}
+
+
 /* flip */
 /* .flip-card-3D-wrapper {
   width: 60%;
@@ -4354,6 +4376,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
   perspective: 900px;
   margin: 0 auto;
 } */
+
 
 #flip-card {
   /* width: 100%;

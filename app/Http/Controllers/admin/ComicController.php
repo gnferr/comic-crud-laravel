@@ -13,7 +13,7 @@ class ComicController extends Controller
     public function index(Request $request): View
     {
         $comic = ComicModel::all();
-        return view('admin.comic', compact('comic'));
+        return view('admin.comic.comic', compact('comic'));
     }
 
     public function get()
@@ -84,9 +84,6 @@ class ComicController extends Controller
         return response()->json($comic);
     }
 
-    public function update()
-    {
-    }
 
     public function delete(Request $request)
     {
